@@ -4,6 +4,8 @@ jobs:
     docker:
       - image: circleci/node:8.11.1-stretch
     working_directory: ~/repo
+    steps:
+      - checkout
   test:
     docker:
       - image: circleci/node:8.11.1-stretch
