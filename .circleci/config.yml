@@ -40,4 +40,21 @@ jobs:
                 --auto_complete --timeout 600 \
                 /
       - run: echo Done
-      #gggg
+workflows:
+  version: 2
+  build_test_ship_deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - ship:
+          requires:
+            - build
+            - test
+      - deploy:
+          type: approval
+          requires:
+            - build
+            - test
+            - ship
